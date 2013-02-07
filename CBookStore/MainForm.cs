@@ -19,8 +19,10 @@ namespace CBookStore
         private void MainForm_Load(object sender, EventArgs e)
         {
             Auth auth = Auth.GetInstance();
-            if ( !auth.IsAdmin() ) { 
-                
+            if ( !auth.IsAdmin() ) {
+                this.tabPage3.Hide();
+                this.tabPage4.Hide();
+                this.tabPage5.Hide();
             }
         }
     }
