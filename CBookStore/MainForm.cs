@@ -15,5 +15,13 @@ namespace CBookStore
         {
             InitializeComponent();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Auth auth = Auth.GetInstance();
+            if ( !auth.IsAdmin() ) { 
+                
+            }
+        }
     }
 }

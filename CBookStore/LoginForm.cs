@@ -29,10 +29,16 @@ namespace CBookStore
             string strcommand = String.Format("Select * FROM [dbo].[Użytkownicy] where email = {0} AND MD5(nazwisko) = {1}", this.textBox1.Text, Program.EncodePassword(this.textBox2.Text));
             SqlCommand sqlcmd = new SqlCommand(strcommand,con);
             SqlDataReader reader = sqlcmd.ExecuteReader();
+            
             if (reader.HasRows)
             {
+                Auth a = Auth.GetInstance();
+                reader.Read();
+                int role= reader.GetInt32(4);
+                a.setIfIsWorker(role);
                 MainForm mForm = new MainForm();
                 mForm.Visible = true;
+
             }
             else {
                 System.Windows.Forms.MessageBox.Show("Niepoprawny login lub hasło");
