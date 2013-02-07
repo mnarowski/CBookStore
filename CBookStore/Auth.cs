@@ -20,5 +20,14 @@ namespace CBookStore
 
             return instance;
         }
+
+        public void setIfIsWorker(int value) {
+            isWorker = value > 1;
+        }
+
+        public bool IsAdmin() {
+            return Auth.isWorker;
+        }
+    
     }
 }

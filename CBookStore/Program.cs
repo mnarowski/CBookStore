@@ -11,11 +11,7 @@ namespace CBookStore
 {
     static class Program
     {
-        private static System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection("user id=st146732;" +
-                                       "password=p146732;server=148.81.130.59;" +
-                                       "Trusted_Connection=yes;" +
-                                       "database=db146732; " +
-                                       "connection timeout=30");
+        
 
         /// <summary>
         /// The main entry point for the application.
@@ -28,17 +24,7 @@ namespace CBookStore
             Application.Run(new LoginForm());
         }
 
-
-        public static System.Data.SqlClient.SqlConnection getConnection() {
-            try {
-                conn.Open();
-            }
-            catch (Exception e) {
-                System.Windows.Forms.MessageBox.Show(e.Message);
-                return null;
-            }
-            return conn;
-        }
+       
         public static string EncodePassword(string originalPassword)
         {
             // step 1, calculate MD5 hash from input
