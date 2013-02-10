@@ -25,5 +25,65 @@ namespace CBookStore
                 this.tabPage5.Hide();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //>
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //<
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //>>
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //<<
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //x
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            //edycja książki
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            //edycja zamówienia
+        }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+            //edycja promocji
+        }
+
+        private void button36_Click(object sender, EventArgs e)
+        {
+            //dodanie ksiazki do zamówienia
+        }
+
+        private void button34_Click(object sender, EventArgs e)
+        {
+            //edycja formy płatności
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+            //edycja użytkownika
+        }
     }
 }

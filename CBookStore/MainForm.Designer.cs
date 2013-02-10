@@ -329,6 +329,7 @@
             this.button1.TabIndex = 10;
             this.button1.Text = ">";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -338,6 +339,7 @@
             this.button2.TabIndex = 11;
             this.button2.Text = "<";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -347,6 +349,7 @@
             this.button3.TabIndex = 12;
             this.button3.Text = "<<";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -356,6 +359,7 @@
             this.button4.TabIndex = 13;
             this.button4.Text = ">>";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -365,6 +369,7 @@
             this.button5.TabIndex = 14;
             this.button5.Text = "+";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -374,6 +379,7 @@
             this.button6.TabIndex = 15;
             this.button6.Text = "x";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // panel1
             // 
@@ -480,6 +486,7 @@
             this.button31.TabIndex = 29;
             this.button31.Text = "Edytuj";
             this.button31.UseVisualStyleBackColor = true;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
             // button32
             // 
@@ -489,6 +496,7 @@
             this.button32.TabIndex = 17;
             this.button32.Text = "Edytuj";
             this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
             // label11
             // 
@@ -601,6 +609,7 @@
             this.button33.TabIndex = 26;
             this.button33.Text = "Edycja";
             this.button33.UseVisualStyleBackColor = true;
+            this.button33.Click += new System.EventHandler(this.button33_Click);
             // 
             // button34
             // 
@@ -610,6 +619,7 @@
             this.button34.TabIndex = 24;
             this.button34.Text = "Edycja";
             this.button34.UseVisualStyleBackColor = true;
+            this.button34.Click += new System.EventHandler(this.button34_Click);
             // 
             // textBox10
             // 
@@ -824,6 +834,7 @@
             this.button35.TabIndex = 39;
             this.button35.Text = "Edycja";
             this.button35.UseVisualStyleBackColor = true;
+            this.button35.Click += new System.EventHandler(this.button35_Click);
             // 
             // button36
             // 
@@ -833,6 +844,7 @@
             this.button36.TabIndex = 29;
             this.button36.Text = "Dodaj do zamówienia";
             this.button36.UseVisualStyleBackColor = true;
+            this.button36.Click += new System.EventHandler(this.button36_Click);
             // 
             // MainForm
             // 
