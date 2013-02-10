@@ -97,7 +97,9 @@ namespace CBookStore
             //edycja użytkownika
         }
 
-        private void TabIndexChanged(object sender, EventArgs e) { 
+        private void TabIndexChanged(object sender, EventArgs e) {
+            string pstr = this.tabControl1.SelectedTab.Text;
+            nNavigation.Reload(pstr);
             //zmiana zakładki
         }
     }
