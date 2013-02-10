@@ -16,8 +16,19 @@ namespace CBookStore
             InitializeComponent();
         }
 
+        private Dictionary<String, String> mappedSet = new Dictionary<String, String>();
+
+        private Navigation nNavigation = Navigation.GetInstance();
+
         private void MainForm_Load(object sender, EventArgs e)
         {
+            mappedSet.Add("Książki","Książki");
+            mappedSet.Add("Użytkownicy", "Użytkownicy");
+            mappedSet.Add("Zamówienia","Zamówienia");
+            mappedSet.Add("Promocje", "Promocje");
+            mappedSet.Add("Formy płatności", "Formy płatności");
+
+
             Auth auth = Auth.GetInstance();
             if ( !auth.IsAdmin() ) {
                 this.tabPage3.Hide();
@@ -84,6 +95,10 @@ namespace CBookStore
         private void button35_Click(object sender, EventArgs e)
         {
             //edycja użytkownika
+        }
+
+        private void TabIndexChanged(object sender, EventArgs e) { 
+            //zmiana zakładki
         }
     }
 }
