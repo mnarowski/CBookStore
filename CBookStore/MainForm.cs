@@ -6,39 +6,64 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace CBookStore
 {
     public partial class MainForm : Form
     {
+        private string selectUsers = "SELECT * FROM [dbo].[Użytkownicy];";
+        private string selectBooks = "Select * FROM [dbo].[Książki];";
+        private string selectOrders = "SELECT * FROM [dbo].[Zamówienia];";
+        private string selectPayments = "SELECT * FROM [dbo].[Formy_płatności];";
+        private string selectPromotions = "SELECT * FROM [dbo].[Promocje];";
+        
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private Dictionary<String, String> mappedSet = new Dictionary<String, String>();
+        private DataSet myData;
+        private DataTable table;
 
-        private Navigation nNavigation = Navigation.GetInstance();
+        private void initData() {
+            myData = new DataSet();
+            myData.Reset();
+            SqlConnection conn = DBHelper.getConnection();
+            SqlDataAdapter abooks = new SqlDataAdapter(DBHelper.Log(selectBooks), conn);
+            abooks.Fill(myData);
+            SqlDataAdapter ausers = new SqlDataAdapter(DBHelper.Log(selectUsers), conn);
+            ausers.Fill(myData);
+            SqlDataAdapter apromotion = new SqlDataAdapter(DBHelper.Log(selectPromotions), conn);
+            apromotion.Fill(myData);
+            SqlDataAdapter apayments = new SqlDataAdapter(DBHelper.Log(selectPayments), conn);
+            apayments.Fill(myData);
+            SqlDataAdapter aorders = new SqlDataAdapter(DBHelper.Log(selectOrders), conn);
+            aorders.Fill(myData);
+        }
 
+        
         private void MainForm_Load(object sender, EventArgs e)
         {
-            mappedSet.Add("Książki","Książki");
-            mappedSet.Add("Użytkownicy", "Użytkownicy");
-            mappedSet.Add("Zamówienia","Zamówienia");
-            mappedSet.Add("Promocje", "Promocje");
-            mappedSet.Add("Formy płatności", "Formy płatności");
-
-
+            initData();
             Auth auth = Auth.GetInstance();
-            if ( !auth.IsAdmin() ) {
-                this.tabPage3.Hide();
-                this.tabPage4.Hide();
-                this.tabPage5.Hide();
+            if ( !auth.IsAdmin() )
+            {
+                this.tabPage3.Parent = null;
+                this.tabPage4.Parent = null;
+                this.tabPage5.Parent = null;
             }
+            else {
+                this.button7.Visible = false;
+            }
+
+            table = myData.Tables["Książki"];
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DBHelper.Log(System.Reflection.MethodBase.GetCurrentMethod().Name);
+            
             //>
         }
 
@@ -97,10 +122,12 @@ namespace CBookStore
             //edycja użytkownika
         }
 
-        private void TabIndexChanged(object sender, EventArgs e) {
+        private void TabIndexChanged1(object sender, EventArgs e) {
             string pstr = this.tabControl1.SelectedTab.Text;
-            nNavigation.Reload(pstr);
             //zmiana zakładki
         }
+
+        
+
     }
 }

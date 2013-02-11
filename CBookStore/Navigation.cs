@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data.DataTable;
 using System.Data;
-using CBookStore.Utils;
 using System.Data.SqlClient;
 
 namespace CBookStore
@@ -27,30 +25,6 @@ namespace CBookStore
             }
 
             return Instance;
-        }
-
-        public bool hasNext() {
-            return false;
-        }
-
-        public bool hasPrevious() {
-            return false;
-        }
-
-        public System.Data.DataRow getCurrentRow() {
-            return null;
-        }
-
-        public System.Data.DataRow getNextRow() {
-            return null;
-        }
-
-        public System.Data.DataRow getPreviousRow() {
-            return null;
-        }
-
-        public void deleteCurrent() { 
-            
         }
 
         public IEnumerable<System.Data.DataRow> GetEnumerable() {

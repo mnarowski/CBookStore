@@ -26,15 +26,18 @@ namespace CBookStore
         private void button1_Click(object sender, EventArgs e)
         {
             SqlConnection con = DBHelper.getConnection();
-            string strcommand = String.Format("Select * FROM [dbo].[Użytkownicy] where email = {0} AND MD5(nazwisko) = {1}", this.textBox1.Text, Program.EncodePassword(this.textBox2.Text));
+
+            string strcommand = String.Format("Select * FROM [dbo].[Użytkownicy] u where email = '{0}' AND [dbo].MD5(u.nazwisko) = [dbo].MD5('{1}')", this.textBox1.Text, this.textBox2.Text);
+            Console.WriteLine(strcommand);
             SqlCommand sqlcmd = new SqlCommand(strcommand,con);
-            SqlDataReader reader = sqlcmd.ExecuteReader();
+            SqlDataReader reader = null;
+            reader = sqlcmd.ExecuteReader();
             
             if (reader.HasRows)
             {
                 Auth a = Auth.GetInstance();
                 reader.Read();
-                int role= reader.GetInt32(4);
+                int role= reader.GetInt32(3);
                 a.setIfIsWorker(role);
                 MainForm mForm = new MainForm();
                 mForm.Visible = true;

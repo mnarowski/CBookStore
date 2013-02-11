@@ -7,7 +7,7 @@ namespace CBookStore
 {
     class Auth
     {
-        private static bool isWorker { get { return isWorker; } set { isWorker = value; } }
+        public bool isWorker = false;
         private static Auth instance = null;
         private Auth() { 
             
@@ -22,11 +22,11 @@ namespace CBookStore
         }
 
         public void setIfIsWorker(int value) {
-            isWorker = value > 1;
+            isWorker = (value > 1) ? true : false;
         }
 
         public bool IsAdmin() {
-            return Auth.isWorker;
+            return this.isWorker;
         }
     
     }
