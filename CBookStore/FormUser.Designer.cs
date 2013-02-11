@@ -321,6 +321,8 @@
             this.Controls.Add(this.label20);
             this.Name = "FormUser";
             this.Text = "FormUser";
+            this.Load += new System.EventHandler(this.FormUser_Load);
+            this.Leave += new System.EventHandler(this.FormUser_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

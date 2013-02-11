@@ -12,10 +12,14 @@ namespace CBookStore
 {
     public partial class MainForm : Form
     {
+        private Form currForm;
+        
         public MainForm()
         {
             InitializeComponent();
         }
+
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             Auth a = Auth.GetInstance();
@@ -28,7 +32,8 @@ namespace CBookStore
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+           currForm = new FormBook();
+           currForm.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
