@@ -55,6 +55,7 @@
             this.button14.TabIndex = 50;
             this.button14.Text = ">>";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // button15
             // 
@@ -64,6 +65,7 @@
             this.button15.TabIndex = 52;
             this.button15.Text = "x";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // button16
             // 
@@ -73,6 +75,7 @@
             this.button16.TabIndex = 47;
             this.button16.Text = ">";
             this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // button17
             // 
@@ -82,6 +85,7 @@
             this.button17.TabIndex = 51;
             this.button17.Text = "+";
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button18
             // 
@@ -91,6 +95,7 @@
             this.button18.TabIndex = 48;
             this.button18.Text = "<";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button19
             // 
@@ -100,6 +105,7 @@
             this.button19.TabIndex = 49;
             this.button19.Text = "<<";
             this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // button31
             // 
@@ -242,5 +248,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+
     }
 }

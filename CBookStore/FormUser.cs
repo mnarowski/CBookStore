@@ -15,5 +15,35 @@ namespace CBookStore
         {
             InitializeComponent();
         }
+
+        private void button40_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button42_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button43_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button38_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button41_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button39_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

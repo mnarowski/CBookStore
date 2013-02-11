@@ -55,6 +55,7 @@
             this.button26.TabIndex = 49;
             this.button26.Text = ">>";
             this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
             // 
             // button27
             // 
@@ -64,6 +65,7 @@
             this.button27.TabIndex = 51;
             this.button27.Text = "x";
             this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
             // button28
             // 
@@ -73,6 +75,7 @@
             this.button28.TabIndex = 46;
             this.button28.Text = ">";
             this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
             // button29
             // 
@@ -82,6 +85,7 @@
             this.button29.TabIndex = 50;
             this.button29.Text = "+";
             this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
             // 
             // button30
             // 
@@ -91,6 +95,7 @@
             this.button30.TabIndex = 47;
             this.button30.Text = "<";
             this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
             // button37
             // 
@@ -100,6 +105,7 @@
             this.button37.TabIndex = 48;
             this.button37.Text = "<<";
             this.button37.UseVisualStyleBackColor = true;
+            this.button37.Click += new System.EventHandler(this.button37_Click);
             // 
             // comboBox5
             // 

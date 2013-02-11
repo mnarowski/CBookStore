@@ -56,6 +56,7 @@
             this.button8.TabIndex = 40;
             this.button8.Text = ">>";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -65,6 +66,7 @@
             this.button9.TabIndex = 42;
             this.button9.Text = "x";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button10
             // 
@@ -83,6 +85,7 @@
             this.button11.TabIndex = 41;
             this.button11.Text = "+";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button12
             // 
@@ -92,6 +95,7 @@
             this.button12.TabIndex = 38;
             this.button12.Text = "<";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button13
             // 
@@ -101,6 +105,7 @@
             this.button13.TabIndex = 39;
             this.button13.Text = "<<";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button7
             // 
@@ -225,6 +230,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormBook";
             this.Text = "FormBook";
+            this.Load += new System.EventHandler(this.FormBook_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
