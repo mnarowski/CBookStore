@@ -13,22 +13,22 @@ namespace CBookStore
 
         public DualNumerator(object[][] data, int maxSize) {
             this.data = data;
-            this.max = maxSize;
+            this.max = maxSize - 1;
         }
 
         public bool HasNext() {
-            return current + 1 < max;
+            return current + 1 <= max;
         }
 
-        public bool hasPrevious() {
+        public bool HasPrevious() {
             return current - 1 >= 0;
         }
 
-        public object[] getFirst() {
+        public object[] GetFirst() {
             return data[0];
         }
 
-        public object[] getLast() {
+        public object[] GetLast() {
             return data[max];
         }
 
@@ -42,7 +42,7 @@ namespace CBookStore
         }
 
         public object[] Previous() {
-            if (hasPrevious()) {
+            if (HasPrevious()) {
                 current--;
                 return data[current];
             }

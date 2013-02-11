@@ -29,19 +29,17 @@ namespace CBookStore
 
         private void FormBook_Load(object sender, EventArgs e)
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM [dbo].[Książki]", conn);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [Książki]", conn);
             DataSet set = new DataSet();
+            set.Reset();
             adapter.Fill(set);
-            foreach (DataTable tbl in set.Tables) {
-                DBHelper.Log(tbl.TableName);
-            }
+
             DataTable datable = set.Tables["Table"];
             int i = 0;
-            IEnumerable<DataRow> enumer = DataTableExtensions.AsEnumerable(datable);
-            this.max = enumer.Count<DataRow>();
+            this.max = datable.Rows.Count;
+            DBHelper.Log(this.max.ToString());
             datas = new object[max][];
-            foreach(DataRow dr in enumer) {
+            foreach(DataRow dr in datable.Rows) {
                 datas[i] = new object[6];
                 int v = 0;
                 foreach(string p in columns){
@@ -52,7 +50,7 @@ namespace CBookStore
             }
 
             dualNumerator = new DualNumerator(datas, max);
-            initTexts(dualNumerator.getFirst());
+            initTexts(dualNumerator.GetFirst());
         }
 
         public void initTexts(object[] reader) {
@@ -68,7 +66,7 @@ namespace CBookStore
         {
             
 
-            if (dualNumerator.hasPrevious())
+            if (dualNumerator.HasPrevious())
             {
                 initTexts(dualNumerator.Previous());
             }
@@ -76,12 +74,12 @@ namespace CBookStore
 
         private void button13_Click(object sender, EventArgs e)
         {
-            initTexts(dualNumerator.getFirst());
+            initTexts(dualNumerator.GetFirst());
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            initTexts(dualNumerator.getLast());
+            initTexts(dualNumerator.GetLast());
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -104,6 +102,7 @@ namespace CBookStore
         {
             if (dualNumerator.HasNext())
             {
+                Console.WriteLine("Im herre");
                 initTexts(dualNumerator.Next());
             }
         }
