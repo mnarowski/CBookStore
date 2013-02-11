@@ -38,12 +38,15 @@ namespace CBookStore
                 Auth a = Auth.GetInstance();
                 reader.Read();
                 int role= reader.GetInt32(3);
+                a.selectedUserId = reader.GetInt32(11);
                 a.setIfIsWorker(role);
+                con.Close();
                 MainForm mForm = new MainForm();
                 mForm.Visible = true;
 
             }
             else {
+                con.Close();
                 System.Windows.Forms.MessageBox.Show("Niepoprawny login lub hasło");
             }
         }

@@ -8,6 +8,7 @@ namespace CBookStore
     class Auth
     {
         public bool isWorker = false;
+        public int selectedUserId;
         private static Auth instance = null;
         private Auth() { 
             
