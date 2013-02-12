@@ -54,6 +54,10 @@ namespace CBookStore
         }
 
         public void initTexts(object[] dataRow) {
+            if (dataRow.Length == 0)
+            {
+                return;
+            }
             this.dateTimePicker2.Value = Convert.ToDateTime(dataRow[1].ToString());
             this.dateTimePicker3.Value = Convert.ToDateTime(dataRow[2].ToString());
             this.textBox9.Text = dataRow[3].ToString();
@@ -98,7 +102,7 @@ namespace CBookStore
         {
             //x
             object[] current = dualNumerator.GetCurrent();
-            if (current != null)
+            if (current.Length > 0)
             {
                 string id_promotion = current[0].ToString();
                 string sqlcmd = String.Format("DELETE FROM [Promocje] WHERE id_promocja={0}", id_promotion);

@@ -22,32 +22,32 @@ namespace CBookStore
 
         private void button40_Click(object sender, EventArgs e)
         {
-
+            //>
         }
 
         private void button42_Click(object sender, EventArgs e)
         {
-
+            //<
         }
 
         private void button43_Click(object sender, EventArgs e)
         {
-
+            //<<
         }
 
         private void button38_Click(object sender, EventArgs e)
         {
-
+            //>>
         }
 
         private void button41_Click(object sender, EventArgs e)
         {
-
+            //+
         }
 
         private void button39_Click(object sender, EventArgs e)
         {
-
+            //x
         }
 
         private void FormUser_Load(object sender, EventArgs e)
@@ -72,6 +72,16 @@ namespace CBookStore
         private void FormUser_Leave(object sender, EventArgs e)
         {
             conn.Close();
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+            //edycja
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //dodaj
         }
     }
 }

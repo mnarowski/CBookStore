@@ -16,8 +16,6 @@ namespace CBookStore
         SqlConnection conn = DBHelper.getConnection();
         string[] columns = { "isbn", "tytul", "autor", "wydawca", "cena", "dostepnych" };
         int max = 0;
-        int min = 0;
-        int curr = 0;
         
         private object[][] datas;
         DualNumerator dualNumerator;
@@ -26,7 +24,6 @@ namespace CBookStore
             InitializeComponent();
         }
 
-        private int selectedIndex;
 
         private void FormBook_Load(object sender, EventArgs e)
         {
@@ -76,6 +73,10 @@ namespace CBookStore
         }
 
         public void initTexts(object[] reader) {
+            if (reader.Length == 0)
+            {
+                return;
+            }
             this.textBox1.Text = reader[1].ToString();
             this.textBox2.Text = reader[2].ToString();
             this.textBox3.Text = reader[3].ToString();
@@ -117,6 +118,9 @@ namespace CBookStore
         {
             //x
             object[] current = dualNumerator.GetCurrent();
+            if (current.Length == 0) {
+                return;
+            }
             if (current != null) {
                 string isbn = current[0].ToString();
                 string sqlcmd = String.Format("DELETE FROM [Książki] WHERE isbn='{0}'", isbn);

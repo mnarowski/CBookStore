@@ -55,6 +55,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button38
@@ -125,6 +126,7 @@
             this.button35.TabIndex = 66;
             this.button35.Text = "Edycja";
             this.button35.UseVisualStyleBackColor = true;
+            this.button35.Click += new System.EventHandler(this.button35_Click);
             // 
             // textBox13
             // 
@@ -287,11 +289,22 @@
             this.label20.TabIndex = 46;
             this.label20.Text = "Email";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(319, 166);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 73;
+            this.button1.Text = "Dodaj";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 266);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button38);
             this.Controls.Add(this.button39);
             this.Controls.Add(this.button40);
@@ -357,5 +370,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button1;
     }
 }

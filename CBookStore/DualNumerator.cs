@@ -25,7 +25,11 @@ namespace CBookStore
         }
 
         public object[] GetFirst() {
-            return data[0];
+            if (max > 0)
+            {
+                return data[0];
+            }
+            return new object[] { };
         }
 
         public object[] GetLast() {
@@ -51,7 +55,13 @@ namespace CBookStore
         }
 
         public object[] GetCurrent() {
-            return data[current];
+            try
+            {
+                return data[current];
+            }
+            catch (IndexOutOfRangeException) {
+                return new object[] { };
+            }
         }
     }
 }
