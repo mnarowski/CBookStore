@@ -25,21 +25,29 @@ namespace CBookStore
         private void button40_Click(object sender, EventArgs e)
         {
             //>
+            if (dualNumerator.HasNext()) {
+                initTexts(dualNumerator.Next());
+            }
         }
 
         private void button42_Click(object sender, EventArgs e)
         {
             //<
+            if (dualNumerator.HasPrevious()) {
+                initTexts(dualNumerator.Previous());
+            }
         }
 
         private void button43_Click(object sender, EventArgs e)
         {
             //<<
+            initTexts(dualNumerator.GetFirst());
         }
 
         private void button38_Click(object sender, EventArgs e)
         {
             //>>
+            initTexts(dualNumerator.GetLast());
         }
 
         private void button41_Click(object sender, EventArgs e)
@@ -80,7 +88,7 @@ namespace CBookStore
 
         public void initData()
         {
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [Książki]", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [Użytkownicy]", conn);
             DataSet set = new DataSet();
             set.Reset();
             adapter.Fill(set);
@@ -92,7 +100,7 @@ namespace CBookStore
             datas = new object[max][];
             foreach (DataRow dr in datable.Rows)
             {
-                datas[i] = new object[6];
+                datas[i] = new object[11];
                 int v = 0;
                 foreach (string p in columns)
                 {
