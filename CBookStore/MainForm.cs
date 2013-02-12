@@ -32,28 +32,52 @@ namespace CBookStore
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (currForm != null)
+            {
+                currForm.Dispose();
+            } 
            currForm = new FormBook();
            currForm.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            if (currForm != null)
+            {
+                currForm.Dispose();
+            } 
+            currForm = new FormOrder();
+            currForm.Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            if (currForm != null)
+            {
+                currForm.Dispose();
+            } 
+            currForm = new FormPromotion();
+            currForm.Visible = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            if (currForm != null)
+            {
+                currForm.Dispose();
+            }
+            currForm = new FormPayment();
+            currForm.Visible = true;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            if (currForm != null)
+            {
+                currForm.Dispose();
+            }
+            currForm = new FormUser();
+            currForm.Visible = true;
         }
 
 

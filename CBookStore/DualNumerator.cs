@@ -49,5 +49,9 @@ namespace CBookStore
 
             return null;
         }
+
+        public object[] GetCurrent() {
+            return data[current];
+        }
     }
 }

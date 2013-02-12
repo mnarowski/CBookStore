@@ -34,7 +34,6 @@
             this.button23 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
-            this.button36 = new System.Windows.Forms.Button();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.button33 = new System.Windows.Forms.Button();
@@ -44,6 +43,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button20
@@ -106,15 +106,6 @@
             this.button25.UseVisualStyleBackColor = true;
             this.button25.Click += new System.EventHandler(this.button25_Click);
             // 
-            // button36
-            // 
-            this.button36.Location = new System.Drawing.Point(274, 162);
-            this.button36.Name = "button36";
-            this.button36.Size = new System.Drawing.Size(135, 23);
-            this.button36.TabIndex = 45;
-            this.button36.Text = "Dodaj do zamówienia";
-            this.button36.UseVisualStyleBackColor = true;
-            // 
             // dateTimePicker3
             // 
             this.dateTimePicker3.Location = new System.Drawing.Point(18, 80);
@@ -137,6 +128,7 @@
             this.button33.TabIndex = 42;
             this.button33.Text = "Edycja";
             this.button33.UseVisualStyleBackColor = true;
+            this.button33.Click += new System.EventHandler(this.button33_Click);
             // 
             // label14
             // 
@@ -189,18 +181,28 @@
             this.label11.TabIndex = 36;
             this.label11.Text = "Data początek";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(512, 161);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 52;
+            this.button1.Text = "Zapisz";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormPromotion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 266);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button20);
             this.Controls.Add(this.button21);
             this.Controls.Add(this.button22);
             this.Controls.Add(this.button23);
             this.Controls.Add(this.button24);
             this.Controls.Add(this.button25);
-            this.Controls.Add(this.button36);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.button33);
@@ -212,6 +214,7 @@
             this.Controls.Add(this.label11);
             this.Name = "FormPromotion";
             this.Text = "FormPromotion";
+            this.Load += new System.EventHandler(this.FormPromotion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,7 +228,6 @@
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.Button button36;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button button33;
@@ -235,5 +237,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button1;
     }
 }
