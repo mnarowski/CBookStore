@@ -62,6 +62,8 @@ namespace CBookStore
 
         private void FormUser_Load(object sender, EventArgs e)
         {
+            this.comboBox6.Items.Add("Użytkownik");
+            this.comboBox6.Items.Add("Pracownik");
             initData();    
         }
 
@@ -121,12 +123,16 @@ namespace CBookStore
             {
                 return;
             }
-            //this.textBox1.Text = reader[1].ToString();
-            //this.textBox2.Text = reader[2].ToString();
-            //this.textBox3.Text = reader[3].ToString();
-            //this.textBox4.Text = Convert.ToString(Convert.ToDouble(reader[4]));
-            //this.textBox5.Text = reader[5].ToString();
-
+            this.textBox7.Text = reader[0].ToString();
+            this.textBox8.Text = reader[1].ToString();
+            this.textBox12.Text = reader[2].ToString();
+            this.comboBox6.SelectedIndex = Convert.ToInt32(reader[3].ToString());
+            this.dateTimePicker4.Value = Convert.ToDateTime(reader[4].ToString());
+            this.textBox14.Text = reader[5].ToString();
+            this.textBox15.Text = reader[6].ToString();
+            this.textBox17.Text = reader[7].ToString();
+            this.textBox16.Text = reader[8].ToString();
+            this.textBox13.Text = reader[8].ToString();
         }
     }
 }

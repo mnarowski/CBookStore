@@ -267,9 +267,9 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(15, 95);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(32, 13);
+            this.label22.Size = new System.Drawing.Size(26, 13);
             this.label22.TabIndex = 48;
-            this.label22.Text = "Email";
+            this.label22.Text = "Imię";
             // 
             // label21
             // 
