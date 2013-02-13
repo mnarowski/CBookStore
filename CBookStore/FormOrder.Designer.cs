@@ -115,6 +115,7 @@
             this.button31.TabIndex = 46;
             this.button31.Text = "Edytuj";
             this.button31.UseVisualStyleBackColor = true;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
             // comboBox3
             // 

@@ -164,5 +164,10 @@ namespace CBookStore
             comboBox3.Items.Add("Zrealizowane");
             initData();
         }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
