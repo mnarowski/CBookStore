@@ -105,6 +105,40 @@ namespace CBookStore
 
         private void FormOrder_Load(object sender, EventArgs e)
         {
+            Auth a = Auth.GetInstance();
+            if (!a.IsAdmin())
+            {
+                comboBox1.Visible = false;
+            }
+            else {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT id_user,imie+ ' ' + nazwisko as nazwa FROM [dbo].[Użytkownicy]", conn);
+                DataSet set = new DataSet();
+                set.Reset();
+                adapter.Fill(set);
+
+                DataTable datable = set.Tables["Table"];
+                int i = 0;
+                this.max = datable.Rows.Count;
+                DBHelper.Log(this.max.ToString());
+                string[] columns2 = { "id_user", "nazwa" };
+                comboBox1.DisplayMember = "nazwa";
+                comboBox1.ValueMember = "id_user";
+                comboBox1.DataSource = datable;
+            }
+
+            SqlDataAdapter adapter2 = new SqlDataAdapter("SELECT id_forma, nazwa FROM [dbo].[Formy_płatności]", conn);
+            DataSet set2 = new DataSet();
+            set2.Reset();
+            adapter2.Fill(set2);
+
+            DataTable datable2 = set2.Tables["Table"];
+            comboBox2.DisplayMember = "nazwa";
+            comboBox2.ValueMember = "id_forma";
+            comboBox2.DataSource = datable2;
+
+            comboBox3.Items.Add("Nowe");
+            comboBox3.Items.Add("W trakcie");
+            comboBox3.Items.Add("Zrealizowane");
             initData();
         }
     }
