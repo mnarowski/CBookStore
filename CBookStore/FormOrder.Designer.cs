@@ -224,6 +224,7 @@
             this.Controls.Add(this.label6);
             this.Name = "FormOrder";
             this.Text = "FormOrder";
+            this.Load += new System.EventHandler(this.FormOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

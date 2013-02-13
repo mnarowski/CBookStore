@@ -95,7 +95,7 @@ namespace CBookStore
         {
             //+
             this.button33.Visible = false;
-            initTexts(new object[4] { "", null, null, 0 });
+            initTexts(new object[4] { "", DateTime.Now, DateTime.Now, 0 });
         }
 
         private void button21_Click(object sender, EventArgs e)

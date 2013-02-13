@@ -34,7 +34,7 @@ namespace CBookStore
         {
             if (currForm != null)
             {
-                currForm.Dispose();
+                currForm.Close();
             } 
            currForm = new FormBook();
            currForm.Visible = true;
@@ -44,7 +44,7 @@ namespace CBookStore
         {
             if (currForm != null)
             {
-                currForm.Dispose();
+                currForm.Close();
             } 
             currForm = new FormOrder();
             currForm.Visible = true;
@@ -54,7 +54,7 @@ namespace CBookStore
         {
             if (currForm != null)
             {
-                currForm.Dispose();
+                currForm.Close();
             } 
             currForm = new FormPromotion();
             currForm.Visible = true;
@@ -64,7 +64,7 @@ namespace CBookStore
         {
             if (currForm != null)
             {
-                currForm.Dispose();
+                currForm.Close();
             }
             currForm = new FormPayment();
             currForm.Visible = true;
@@ -74,7 +74,7 @@ namespace CBookStore
         {
             if (currForm != null)
             {
-                currForm.Dispose();
+                currForm.Close();
             }
             currForm = new FormUser();
             currForm.Visible = true;

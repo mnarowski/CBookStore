@@ -53,18 +53,34 @@ namespace CBookStore
         private void button41_Click(object sender, EventArgs e)
         {
             //+
+            button1.Visible = true;
+            button35.Visible = false;
+            initTexts(new object[] { "","","",0,DateTime.Now,"","",0,0,""});
         }
 
         private void button39_Click(object sender, EventArgs e)
         {
             //x
+            object[] cur = dualNumerator.GetCurrent();
+
+            if (cur.Length < 1)
+            {
+                return;
+            }
+            string id = cur[10].ToString();
+            string cmd = String.Format("DELETE FROM [dbo].[Użytkownicy] WHERE id_user = {0}", id);
+            SqlCommand sqlcmd = new SqlCommand(cmd, conn);
+            sqlcmd.ExecuteNonQuery();
+
+            initData();
         }
 
         private void FormUser_Load(object sender, EventArgs e)
         {
             this.comboBox6.Items.Add("Użytkownik");
-            this.comboBox6.Items.Add("Zarejestrowany");
             this.comboBox6.Items.Add("Pracownik");
+            this.comboBox6.Items.Add("Admin");
+            button1.Visible = false;
             initData();    
         }
 
@@ -76,17 +92,72 @@ namespace CBookStore
 
         private void FormUser_Leave(object sender, EventArgs e)
         {
-            conn.Close();
+            //conn.Close();
         }
 
         private void button35_Click(object sender, EventArgs e)
         {
             //edycja
+            string email = this.textBox7.Text;
+            string nazwisko = this.textBox8.Text;
+            string imie = this.textBox12.Text;
+            int rola = this.comboBox6.SelectedIndex;
+            string date = this.dateTimePicker4.Value.ToString("s");
+            string miasto = this.textBox14.Text;
+            string ulica = this.textBox15.Text;
+            int budynek = Convert.ToInt32(this.textBox17.Text);
+            int lokal = Convert.ToInt32(this.textBox16.Text);
+            string kod = this.textBox13.Text;
+            object[] cur = dualNumerator.GetCurrent();
+
+            if (cur.Length < 1) {
+                return;
+            }
+            string id = cur[10].ToString();
+            string cmd = String.Format("UPDATE [dbo].[Użytkownicy] SET" +
+            "email='{0}',nazwisko='{1}',imie='{2}',rola={3},data_urodzenia='{4}',"+
+            "miasto='{5}',ulica='{6}',nr_budynku={7},nr_lokalu={8},kod_pocztowy+'{9}' WHERE id_user={10}",
+            email, nazwisko, imie, rola, date, miasto, ulica, budynek, lokal, kod);
+
+            SqlCommand sqlcmd = new SqlCommand(cmd, conn);
+            sqlcmd.ExecuteNonQuery();
+            initData();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //dodaj
+            //var p = new object[] { "email",
+            //                       "nazwisko",
+            //                       "imie",
+            //                       "rola",
+            //                       "data_urodzenia",
+            //                       "miasto",
+            //                       "ulica",
+            //                       "nr_budynku",
+            //                       "nr_lokalu",
+            //                       "kod_pocztowy",
+            //                       "id_user"};
+
+            string email =this.textBox7.Text ;
+            string nazwisko = this.textBox8.Text ;
+            string imie = this.textBox12.Text;
+            int rola = this.comboBox6.SelectedIndex ;
+            string date = this.dateTimePicker4.Value.ToString("s");
+            string miasto = this.textBox14.Text ;
+            string ulica = this.textBox15.Text;
+            int budynek = Convert.ToInt32(this.textBox17.Text);
+            int lokal = Convert.ToInt32(this.textBox16.Text);
+            string kod = this.textBox13.Text ;
+            string cmd = String.Format("INSERT INTO [dbo].[Użytkownicy]"+ 
+            "VALUES('{0}','{1}','{2}',{3},'{4}','{5}','{6}',{7},{8},'{9}')",
+            email,nazwisko,imie,rola,date,miasto,ulica,budynek,lokal,kod);
+
+            SqlCommand sqlcmd = new SqlCommand(cmd, conn);
+            sqlcmd.ExecuteNonQuery();
+            this.button35.Visible = true;
+            this.button1.Visible = false;
+            initData();
         }
 
         public void initData()
@@ -134,6 +205,11 @@ namespace CBookStore
             this.textBox17.Text = reader[7].ToString();
             this.textBox16.Text = reader[8].ToString();
             this.textBox13.Text = reader[8].ToString();
+        }
+
+        public new void Close() {
+            conn.Close();
+            base.Close();
         }
     }
 }
