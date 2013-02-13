@@ -223,7 +223,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Name = "FormOrder";
-            this.Text = "FormOrder";
+            this.Text = "Zamówienia";
             this.Load += new System.EventHandler(this.FormOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

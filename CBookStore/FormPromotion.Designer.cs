@@ -213,7 +213,7 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Name = "FormPromotion";
-            this.Text = "FormPromotion";
+            this.Text = "Promocje";
             this.Load += new System.EventHandler(this.FormPromotion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

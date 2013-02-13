@@ -333,7 +333,7 @@
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Name = "FormUser";
-            this.Text = "FormUser";
+            this.Text = "Użytkownicy";
             this.Load += new System.EventHandler(this.FormUser_Load);
             this.Leave += new System.EventHandler(this.FormUser_Leave);
             this.ResumeLayout(false);

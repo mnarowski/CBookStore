@@ -79,16 +79,22 @@ namespace CBookStore
             this.textBox6.Text = data[2].ToString();
             this.comboBox2.SelectedValue = Convert.ToInt32(data[3].ToString());
             this.comboBox3.SelectedIndex = Convert.ToInt32(data[4].ToString());
-            this.checkedListBox1.DisplayMember = "tytul";
-            this.checkedListBox1.ValueMember = "isbn";
-
+            
             SqlDataAdapter adapter2 = new SqlDataAdapter("SELECT isbn, tytul FROM [dbo].[Książki]", conn);
             DataSet set2 = new DataSet();
             set2.Reset();
             adapter2.Fill(set2);
             DataTable dt = set2.Tables[0];
-    
+            
             this.checkedListBox1.DataSource = dt;
+            this.checkedListBox1.DisplayMember = "tytul";
+            this.checkedListBox1.ValueMember = "isbn";
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+
+                checkedListBox1.SetItemChecked(i, true);
+
+            }
 
         }
 
