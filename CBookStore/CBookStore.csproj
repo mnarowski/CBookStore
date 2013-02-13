@@ -137,6 +137,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="_SQL\cena_promocyjna.sql" />
+    <Content Include="_SQL\ksiazki_w_promocji.sql" />
     <Content Include="_SQL\ksiazki_w_zamowieniu.sql" />
     <Content Include="_SQL\MD5.sql" />
   </ItemGroup>

@@ -70,8 +70,24 @@ namespace CBookStore
             initData();
         }
 
-        public void initTexts(object[] data) { 
-            
+        public void initTexts(object[] data) {
+            if (data.Length == 0) {
+                return;
+            }
+
+            this.comboBox1.SelectedIndex = Convert.ToInt32(data[1].ToString());
+            this.textBox6.Text = data[2].ToString();
+            this.comboBox2.SelectedIndex = Convert.ToInt32(data[3].ToString());
+            this.comboBox3.SelectedIndex = Convert.ToInt32(data[4].ToString());
+            this.checkedListBox1.DisplayMember = "tytul";
+            this.checkedListBox1.ValueMember = "isbn";
+
+            SqlDataAdapter adapter2 = new SqlDataAdapter("SELECT isbn, tytul FROM [dbo].[Książki]", conn);
+            DataSet set2 = new DataSet();
+            set2.Reset();
+            adapter2.Fill(set2);
+            this.checkedListBox1.DataSource = set2.Tables["Table"];
+
         }
 
         public void initData()
@@ -117,7 +133,6 @@ namespace CBookStore
                 adapter.Fill(set);
 
                 DataTable datable = set.Tables["Table"];
-                int i = 0;
                 this.max = datable.Rows.Count;
                 DBHelper.Log(this.max.ToString());
                 string[] columns2 = { "id_user", "nazwa" };
