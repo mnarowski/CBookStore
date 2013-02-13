@@ -16,7 +16,7 @@ namespace CBookStore
         private DualNumerator dualNumerator;
         private int max = 0;
         private object[][] datas;
-        private string[] columns = { };
+        private string[] columns = { "email","nazwisko","imie","rola","data_urodzenia","miasto","ulica","nr_budynku","nr_lokalu","kod_pocztowy","id_user"};
         public FormUser()
         {
             InitializeComponent();
@@ -63,6 +63,7 @@ namespace CBookStore
         private void FormUser_Load(object sender, EventArgs e)
         {
             this.comboBox6.Items.Add("Użytkownik");
+            this.comboBox6.Items.Add("Zarejestrowany");
             this.comboBox6.Items.Add("Pracownik");
             initData();    
         }
@@ -90,11 +91,11 @@ namespace CBookStore
 
         public void initData()
         {
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [Użytkownicy]", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [dbo].[Użytkownicy]", conn);
             DataSet set = new DataSet();
             set.Reset();
             adapter.Fill(set);
-
+            
             DataTable datable = set.Tables["Table"];
             int i = 0;
             this.max = datable.Rows.Count;
@@ -119,7 +120,6 @@ namespace CBookStore
 
         public void initTexts(object[] reader)
         {
-            DBHelper.Log(reader.Length.ToString());
             if (reader.Length == 0)
             {
                 return;

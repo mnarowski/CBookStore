@@ -32,6 +32,7 @@ namespace CBookStore
             SqlCommand sqlcmd = new SqlCommand(strcommand,con);
             SqlDataReader reader = null;
             reader = sqlcmd.ExecuteReader();
+
             
             if (reader.HasRows)
             {

@@ -10,9 +10,11 @@ namespace CBookStore
         private object[][] data;
         int current = 0;
         int max = 0;
+        int maxSize = 0;
 
         public DualNumerator(object[][] data, int maxSize) {
             this.data = data;
+            this.maxSize = maxSize;
             this.max = maxSize - 1;
         }
 
@@ -25,7 +27,7 @@ namespace CBookStore
         }
 
         public object[] GetFirst() {
-            if (max > 0)
+            if (maxSize > 0)
             {
                 return data[0];
             }
