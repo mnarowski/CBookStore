@@ -119,6 +119,7 @@ namespace CBookStore
 
         public void initTexts(object[] reader)
         {
+            DBHelper.Log(reader.Length.ToString());
             if (reader.Length == 0)
             {
                 return;
