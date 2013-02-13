@@ -75,9 +75,9 @@ namespace CBookStore
                 return;
             }
 
-            this.comboBox1.SelectedIndex = Convert.ToInt32(data[1].ToString());
+            this.comboBox1.SelectedValue = Convert.ToInt32(data[1].ToString());
             this.textBox6.Text = data[2].ToString();
-            this.comboBox2.SelectedIndex = Convert.ToInt32(data[3].ToString());
+            this.comboBox2.SelectedValue = Convert.ToInt32(data[3].ToString());
             this.comboBox3.SelectedIndex = Convert.ToInt32(data[4].ToString());
             this.checkedListBox1.DisplayMember = "tytul";
             this.checkedListBox1.ValueMember = "isbn";
@@ -86,7 +86,9 @@ namespace CBookStore
             DataSet set2 = new DataSet();
             set2.Reset();
             adapter2.Fill(set2);
-            this.checkedListBox1.DataSource = set2.Tables["Table"];
+            DataTable dt = set2.Tables[0];
+    
+            this.checkedListBox1.DataSource = dt;
 
         }
 
