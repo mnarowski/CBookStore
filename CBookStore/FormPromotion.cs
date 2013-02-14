@@ -70,13 +70,14 @@ namespace CBookStore
                 set2.Reset();
                 adapter2.Fill(set2);
                 dt = set2.Tables[0];
+
+                this.checkedListBox2.DataSource = dt;
+                this.checkedListBox2.DisplayMember = "tytul";
+                this.checkedListBox2.ValueMember = "isbn";
             }
             else {
                 dt = new DataTable();
             }
-            this.checkedListBox2.DataSource = dt;
-            this.checkedListBox2.DisplayMember = "tytul";
-            this.checkedListBox2.ValueMember = "isbn";
             for (int i = 0; i < checkedListBox2.Items.Count; i++)
             {
 
@@ -136,9 +137,9 @@ namespace CBookStore
             }
         }
 
-        public new void Dispose() {
+        public new void Close() {
             conn.Close();
-            base.Dispose();
+            base.Close();
         }
 
         private void FormPromotion_Load(object sender, EventArgs e)

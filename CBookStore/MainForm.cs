@@ -80,6 +80,9 @@ namespace CBookStore
             currForm.Visible = true;
         }
 
+        public new void Close() {
+            Application.Exit();
+        }
 
     }
 }

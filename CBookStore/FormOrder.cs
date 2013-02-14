@@ -23,6 +23,11 @@ namespace CBookStore
             InitializeComponent();
         }
 
+        public new void Close() {
+            conn.Close();
+            base.Close();
+        }
+
         private void button16_Click(object sender, EventArgs e)
         {
             //>
@@ -54,6 +59,7 @@ namespace CBookStore
         private void button17_Click(object sender, EventArgs e)
         {
             //+
+            System.Windows.Forms.MessageBox.Show("Zamówinie dodaje się składając je na książkę");
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -82,20 +88,22 @@ namespace CBookStore
             this.comboBox3.SelectedIndex = Convert.ToInt32(data[4].ToString());
             string id = data[0].ToString();
             DataTable dt;
-            if (id.Equals(String.Empty))
+            if (!id.Equals(String.Empty))
             {
                 SqlDataAdapter adapter2 = new SqlDataAdapter(String.Format("EXEC [dbo].ksiazki_w_zamowieniu {0}", id), conn);
                 DataSet set2 = new DataSet();
                 set2.Reset();
                 adapter2.Fill(set2);
                 dt = set2.Tables[0];
+                this.checkedListBox1.DataSource = dt;
+                this.checkedListBox1.DisplayMember = "tytul";
+                this.checkedListBox1.ValueMember = "isbn";
+            
             }
             else {
                 dt = new DataTable();
+                
             } 
-            this.checkedListBox1.DataSource = dt;
-            this.checkedListBox1.DisplayMember = "tytul";
-            this.checkedListBox1.ValueMember = "isbn";
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
 
@@ -107,7 +115,13 @@ namespace CBookStore
 
         public void initData()
         {
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [Zamowienia]", conn);
+            Auth a = Auth.GetInstance();
+
+            string strcmd = "SELECT * FROM [Zamowienia] WHERE 1=1 ";
+            if (!a.IsAdmin()) {
+                strcmd += String.Format(" AND id_user = {0}", a.selectedUserId);
+            }
+            SqlDataAdapter adapter = new SqlDataAdapter(strcmd, conn);
             DataSet set = new DataSet();
             set.Reset();
             adapter.Fill(set);
@@ -185,6 +199,7 @@ namespace CBookStore
             string id = c[0].ToString();
             string cmd = String.Format("UPDATE [Zamowienia] SET id_user={0},koszt={1},id_forma={2},status_zamowienia={3} WHERE id_zamownienie={4}", uzytkownik, cena, forma, status,id);
             SqlCommand sqlcmd = new SqlCommand(cmd,conn);
+            sqlcmd.ExecuteNonQuery();
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
                 if (!checkedListBox1.GetItemChecked(i)) {

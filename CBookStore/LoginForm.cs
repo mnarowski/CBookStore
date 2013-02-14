@@ -44,6 +44,7 @@ namespace CBookStore
                 con.Close();
                 MainForm mForm = new MainForm();
                 mForm.Visible = true;
+                this.Visible = false;
 
             }
             else {

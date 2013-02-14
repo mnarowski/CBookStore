@@ -18,6 +18,11 @@ namespace CBookStore
         private int max = 0;
         string[] columns = { "id_forma", "nazwa", "wymaganie_potwierdzenie", "serwis_posredniczacy", "dostepnosc", "dostepnosc_do" };
 
+        public new void Close() {
+            conn.Close();
+            base.Close();
+        }
+
         public FormPayment()
         {
             InitializeComponent();
@@ -96,7 +101,12 @@ namespace CBookStore
             int dostepnosc = this.comboBox5.SelectedIndex;
             string dos = this.dateTimePicker1.Value.ToString("s");
             string id_forma = row[0].ToString();
-            string cmd = String.Format("UPDATE [Formy_płatności] SET nazwa='{0}', serwis_posredniczacy='{1}',dosteposc={2},wymaga_potwierdzenia={3},dostepnosc_do={4} WHERE id_forma={5}", nazwa, serwis, dostepnosc, dos, id_forma);
+            string cmd = String.Format("UPDATE [Formy_płatności] SET nazwa='{0}',"+
+                                    " serwis_posredniczacy='{1}',dosteposc={2},"+
+                                    "wymaga_potwierdzenia={3},dostepnosc_do='{4}' "+
+                                    " WHERE id_forma={5}", nazwa,
+                                    serwis, dostepnosc,wymaga_potwierdzenia,
+                                    dos, id_forma);
             DBHelper.Log(cmd);
 
             SqlCommand sqlcmd = new SqlCommand(cmd, conn);

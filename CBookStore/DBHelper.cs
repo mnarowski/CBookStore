@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace CBookStore
 {
     class DBHelper
     {
-        private static System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(
-                                       "User Id=st146732;" +
-                                       "password=p146732;"+
-                                       "Server=148.81.130.59;" +
-                                       "Trusted_Connection=false;" +
-                                       "database=db146732; " +
-                                       "connection timeout=30");
         private static DBHelper instance = new DBHelper();
         private DBHelper() { }
 
@@ -30,6 +24,13 @@ namespace CBookStore
 
         public static System.Data.SqlClient.SqlConnection getConnection()
         {
+            SqlConnection conn = new System.Data.SqlClient.SqlConnection(
+                                       "User Id=st146732;" +
+                                       "password=p146732;" +
+                                       "Server=148.81.130.59;" +
+                                       "Trusted_Connection=false;" +
+                                       "database=db146732; " +
+                                       "connection timeout=30"); 
             try
             {
                 conn.Open();

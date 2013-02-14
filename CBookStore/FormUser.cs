@@ -114,10 +114,10 @@ namespace CBookStore
                 return;
             }
             string id = cur[10].ToString();
-            string cmd = String.Format("UPDATE [dbo].[Użytkownicy] SET" +
-            "email='{0}',nazwisko='{1}',imie='{2}',rola={3},data_urodzenia='{4}',"+
-            "miasto='{5}',ulica='{6}',nr_budynku={7},nr_lokalu={8},kod_pocztowy+'{9}' WHERE id_user={10}",
-            email, nazwisko, imie, rola, date, miasto, ulica, budynek, lokal, kod);
+            string cmd = String.Format("UPDATE [dbo].[Użytkownicy] SET " +
+            "email='{0}',nazwisko='{1}',imie='{2}',rola={3},data_urodzenia='{4}'," +
+            "miasto='{5}',ulica='{6}',nr_budynku={7},nr_lokalu={8},kod_pocztowy='{9}' WHERE id_user={10}",
+            email, nazwisko, imie, rola, date, miasto, ulica, budynek, lokal, kod,id);
 
             SqlCommand sqlcmd = new SqlCommand(cmd, conn);
             sqlcmd.ExecuteNonQuery();
@@ -204,7 +204,7 @@ namespace CBookStore
             this.textBox15.Text = reader[6].ToString();
             this.textBox17.Text = reader[7].ToString();
             this.textBox16.Text = reader[8].ToString();
-            this.textBox13.Text = reader[8].ToString();
+            this.textBox13.Text = reader[9].ToString();
         }
 
         public new void Close() {

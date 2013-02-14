@@ -14,7 +14,7 @@ namespace CBookStore
     public partial class FormBook : Form
     {
         SqlConnection conn = DBHelper.getConnection();
-        string[] columns = { "isbn", "tytul", "autor", "wydawca", "cena", "dostepnych" };
+        string[] columns = { "isbn", "tytul", "autor", "wydawca", "cena", "dostepnych"};
         int max = 0;
         
         private object[][] datas;
@@ -25,13 +25,14 @@ namespace CBookStore
         }
 
 
-        private void FormBook_Load(object sender, EventArgs e)
-        {
+        private void initForm(){
             label6.Visible = false;
             textBox6.Visible = false;
             button1.Visible = false;
             initData();
             Auth a = Auth.GetInstance();
+
+            string selectedOrders = String.Format("SELECT * FROM [Zamowienia] WHERE status_zamowienia=0 ");
             if (!a.IsAdmin())
             {
                 this.button11.Visible = false;
@@ -42,11 +43,49 @@ namespace CBookStore
                 this.textBox4.Enabled = false;
                 this.textBox5.Enabled = false;
                 this.button2.Visible = false;
+                selectedOrders += String.Format(" And id_user = {0}", a.selectedUserId);
             }
 
+            SqlDataAdapter adapter = new SqlDataAdapter(selectedOrders, conn);
+            DataSet set = new DataSet();
+            set.Reset();
+            adapter.Fill(set);
+
+            DataTable datable = set.Tables["Table"];
+            if (datable.Rows.Count > 0)
+            {
+                this.comboBox1.DisplayMember = "id_zamowienie";
+                this.comboBox1.ValueMember = "id_zamowienie";
+                this.comboBox1.DataSource = datable;
+            }
             label7.Visible = false;
             comboBox1.Visible = false;
             button3.Visible = false;
+
+
+
+            //promocje
+            SqlDataAdapter adapter2 = new SqlDataAdapter("SELECT id_promocja,data_poczatek FROM [Promocje]", conn);
+            DataSet set2 = new DataSet();
+            set2.Reset();
+            adapter2.Fill(set2);
+
+            DataTable datable2 = set2.Tables["Table"];
+            if (datable2.Rows.Count > 0)
+            {
+                this.comboBox2.DisplayMember = "data_poczatek";
+                this.comboBox2.ValueMember = "id_promocja";
+                this.comboBox2.DataSource = datable2;
+            }
+            label8.Visible = false;
+            comboBox2.Visible = false;
+            button4.Visible = false;
+        }
+
+        private void FormBook_Load(object sender, EventArgs e)
+        {
+            initForm();
+
         }
 
         public void initData() {
@@ -87,7 +126,20 @@ namespace CBookStore
             this.textBox3.Text = reader[3].ToString();
             this.textBox4.Text = Convert.ToString(Convert.ToDouble(reader[4]));
             this.textBox5.Text = reader[5].ToString();
-
+            label10.Text = String.Empty;
+            if (!reader[0].ToString().Equals(String.Empty))
+            {
+                string test = String.Format("SELECT [dbo].cena_promocyjna('{0}')",reader[0].ToString());
+                SqlCommand cmd = new SqlCommand(test, conn);
+                string text = String.Empty;
+                SqlDataReader r = cmd.ExecuteReader();
+                if (r.HasRows) {
+                    r.Read();
+                    text = r.GetDecimal(0).ToString(CultureInfo.InvariantCulture);
+                }
+                r.Close();
+                label10.Text = text;
+            }
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -137,9 +189,9 @@ namespace CBookStore
         }
 
         public new void Close() {
-            base.Close();
             conn.Close();
-
+            base.Close();
+            
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -224,6 +276,86 @@ namespace CBookStore
         private void button2_Click(object sender, EventArgs e)
         {
             //dodaj do promocji
+            this.label8.Visible = true;
+            this.comboBox2.Visible = true;
+            this.button4.Visible = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // dodaj do zamówienia
+            object[] curr = dualNumerator.GetCurrent();
+
+            if (curr.Length == 0) {
+                System.Windows.Forms.MessageBox.Show("Najpierw zapis książke");
+                return;
+            }
+            int val = 0;
+            if (this.comboBox1.SelectedValue != null)
+            { val = Convert.ToInt32(this.comboBox1.SelectedValue.ToString()); }
+            if (val == 0) {
+                int userid = Auth.GetInstance().selectedUserId;
+                SqlCommand sqlcmd = new SqlCommand(String.Format("INSERT INTO [dbo].[Zamowienia]" +
+                    " VALUES({0},0,1 ,0)",userid), conn);
+                sqlcmd.ExecuteNonQuery();
+                SqlCommand sqlcmdid = new SqlCommand(String.Format("SELECT id_zamowienie FROM [Zamowienia] WHERE id_user = {0}", userid), conn);
+                SqlDataReader reader = sqlcmdid.ExecuteReader();
+                reader.Read();
+                val = reader.GetInt32(0);
+                reader.Close();
+            }
+            string isbn = curr[0].ToString();
+            SqlCommand test = new SqlCommand(String.Format("SELECT * FROM [Zamowienie_ksiazki] WHERE isbn='{0}' AND id_zamowienie={1}", isbn, val), conn);
+            SqlDataReader dr = test.ExecuteReader();
+            bool has = dr.HasRows;
+            dr.Close();
+            if (has)
+            {
+                System.Windows.Forms.MessageBox.Show("Książki jest już najprawodpodobniej w zamówieniu");
+                return;
+            }
+
+            SqlCommand sqlcmdx = new SqlCommand(String.Format("INSERT INTO [dbo].[Zamowienie_ksiazki](isbn,id_zamowienie)" +
+                    " VALUES('{0}',{1})", isbn,val), conn);
+            sqlcmdx.ExecuteNonQuery();
+            initForm();
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // dodaj do zamówienia
+            object[] curr = dualNumerator.GetCurrent();
+
+            if (curr.Length == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Najpierw zapis książke");
+                return;
+            }
+
+            int val = Convert.ToInt32(this.comboBox2.SelectedValue.ToString());
+
+            if (val == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Brak promocji");
+                return;
+            }
+
+
+            string isbn = curr[0].ToString();
+            SqlCommand test = new SqlCommand(String.Format("SELECT * FROM [Ksiazki_promocje] WHERE isbn='{0}' AND id_promocja={1}",isbn,val), conn);
+            SqlDataReader dr = test.ExecuteReader();
+            bool has = dr.HasRows;
+            dr.Close();
+            if (has) {
+                System.Windows.Forms.MessageBox.Show("Książki jest już najprawodpodobniej w promocji");
+                return;
+            }
+            SqlCommand sqlcmdx = new SqlCommand(DBHelper.Log(String.Format("INSERT INTO [Ksiazki_promocje](isbn,id_promocja)" +
+                    " VALUES('{0}',{1})", isbn, val)), conn);
+            sqlcmdx.ExecuteNonQuery();
+            initForm();
+
         }
 
         
