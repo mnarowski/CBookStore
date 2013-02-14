@@ -12,7 +12,7 @@ BEGIN
 	FETCH NEXT FROM nCursor INTO @promocja_id;
 	WHILE @@FETCH_STATUS=0
 	BEGIN
-		SET @obnizka = @obnizka + (SELECT obnizka FROM [Promocje] WHERE id_promocja = @promocja_id);
+		SET @obnizka = @obnizka + (SELECT obnizka FROM [Promocje] WHERE id_promocja = @promocja_id AND GETDATE() BETWEEN data_poczatek AND data_koniec);
 			FETCH NEXT FROM nCursor INTO @promocja_id;
 	END 
 	

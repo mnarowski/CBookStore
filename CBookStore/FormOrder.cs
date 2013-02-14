@@ -81,12 +81,18 @@ namespace CBookStore
             this.comboBox2.SelectedValue = Convert.ToInt32(data[3].ToString());
             this.comboBox3.SelectedIndex = Convert.ToInt32(data[4].ToString());
             string id = data[0].ToString();
-            SqlDataAdapter adapter2 = new SqlDataAdapter(String.Format("EXEC [dbo].ksiazki_w_zamowieniu {0}",id), conn);
-            DataSet set2 = new DataSet();
-            set2.Reset();
-            adapter2.Fill(set2);
-            DataTable dt = set2.Tables[0];
-            
+            DataTable dt;
+            if (id.Equals(String.Empty))
+            {
+                SqlDataAdapter adapter2 = new SqlDataAdapter(String.Format("EXEC [dbo].ksiazki_w_zamowieniu {0}", id), conn);
+                DataSet set2 = new DataSet();
+                set2.Reset();
+                adapter2.Fill(set2);
+                dt = set2.Tables[0];
+            }
+            else {
+                dt = new DataTable();
+            } 
             this.checkedListBox1.DataSource = dt;
             this.checkedListBox1.DisplayMember = "tytul";
             this.checkedListBox1.ValueMember = "isbn";

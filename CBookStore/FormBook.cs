@@ -41,7 +41,12 @@ namespace CBookStore
                 this.textBox3.Enabled = false;
                 this.textBox4.Enabled = false;
                 this.textBox5.Enabled = false;
+                this.button2.Visible = false;
             }
+
+            label7.Visible = false;
+            comboBox1.Visible = false;
+            button3.Visible = false;
         }
 
         public void initData() {
@@ -166,6 +171,20 @@ namespace CBookStore
         private void button7_Click(object sender, EventArgs e)
         {
             //dodanie do zamówienia
+            object[] param = dualNumerator.GetCurrent();
+            if (param.Length == 0) {
+                System.Windows.Forms.MessageBox.Show("Nie można dodać tworzonej/pustej książki do zamówienia");
+                return;
+            }
+
+            if (param[0].ToString().Equals(String.Empty)) {
+                System.Windows.Forms.MessageBox.Show("Nie można dodać tworzonej/pustej książki do zamówienia");
+                return;
+            }
+
+            label7.Visible = true;
+            comboBox1.Visible = true;
+            button3.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -200,6 +219,11 @@ namespace CBookStore
             button1.Visible = false;
 
             initData();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //dodaj do promocji
         }
 
         

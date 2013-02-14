@@ -61,6 +61,28 @@ namespace CBookStore
             this.dateTimePicker2.Value = Convert.ToDateTime(dataRow[1].ToString());
             this.dateTimePicker3.Value = Convert.ToDateTime(dataRow[2].ToString());
             this.textBox9.Text = dataRow[3].ToString();
+            DataTable dt;
+            string id = dataRow[0].ToString();
+            if (!String.Empty.Equals(id))
+            {
+                SqlDataAdapter adapter2 = new SqlDataAdapter(String.Format("EXEC [dbo].ksiazki_w_promocji {0}", id), conn);
+                DataSet set2 = new DataSet();
+                set2.Reset();
+                adapter2.Fill(set2);
+                dt = set2.Tables[0];
+            }
+            else {
+                dt = new DataTable();
+            }
+            this.checkedListBox2.DataSource = dt;
+            this.checkedListBox2.DisplayMember = "tytul";
+            this.checkedListBox2.ValueMember = "isbn";
+            for (int i = 0; i < checkedListBox2.Items.Count; i++)
+            {
+
+                checkedListBox2.SetItemChecked(i, true);
+
+            }
         }
 
         private void button22_Click(object sender, EventArgs e)
@@ -94,6 +116,7 @@ namespace CBookStore
         private void button23_Click(object sender, EventArgs e)
         {
             //+
+            button1.Visible = true;
             this.button33.Visible = false;
             initTexts(new object[4] { "", DateTime.Now, DateTime.Now, 0 });
         }
@@ -148,6 +171,17 @@ namespace CBookStore
             DBHelper.Log(command);
             SqlCommand sqlcmd = new SqlCommand(command, conn);
             sqlcmd.ExecuteNonQuery();
+            for (int i = 0; i < checkedListBox2.Items.Count; i++)
+            {
+                if (!checkedListBox2.GetItemChecked(i))
+                {
+                    DataRowView item = checkedListBox2.Items[i] as DataRowView;
+                    var o = item.Row["isbn"];
+                    string sqlcmdt = String.Format("DELETE FROM [Ksiazki_promocje] WHERE isbn={0} AND id_zamowienie={1}", o, id);
+                    SqlCommand sqlcmdtc = new SqlCommand(sqlcmdt, conn);
+                    sqlcmdtc.ExecuteNonQuery();
+                }
+            }
             initData();
         }
     }
