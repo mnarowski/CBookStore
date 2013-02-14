@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace CBookStore
 {
@@ -79,8 +80,8 @@ namespace CBookStore
             this.textBox6.Text = data[2].ToString();
             this.comboBox2.SelectedValue = Convert.ToInt32(data[3].ToString());
             this.comboBox3.SelectedIndex = Convert.ToInt32(data[4].ToString());
-            
-            SqlDataAdapter adapter2 = new SqlDataAdapter("SELECT isbn, tytul FROM [dbo].[Książki]", conn);
+            string id = data[0].ToString();
+            SqlDataAdapter adapter2 = new SqlDataAdapter(String.Format("EXEC [dbo].ksiazki_w_zamowieniu {0}",id), conn);
             DataSet set2 = new DataSet();
             set2.Reset();
             adapter2.Fill(set2);
@@ -167,7 +168,29 @@ namespace CBookStore
 
         private void button31_Click(object sender, EventArgs e)
         {
+            object[] c = dualNumerator.GetCurrent();
+            if (c.Length == 0) {
+                return;
+            }
+            string uzytkownik = this.comboBox1.SelectedValue.ToString();
+            string cena = Convert.ToDouble(this.textBox6.Text).ToString(CultureInfo.InvariantCulture);
+            string forma = this.comboBox2.SelectedValue.ToString();
+            int status = this.comboBox3.SelectedIndex;
+            string id = c[0].ToString();
+            string cmd = String.Format("UPDATE [Zamowienia] SET id_user={0},koszt={1},id_forma={2},status_zamowienia={3} WHERE id_zamownienie={4}", uzytkownik, cena, forma, status,id);
+            SqlCommand sqlcmd = new SqlCommand(cmd,conn);
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                if (!checkedListBox1.GetItemChecked(i)) {
+                    DataRowView item = checkedListBox1.Items[i] as DataRowView;
+                    var o = item.Row["isbn"];
+                    string sqlcmdt = String.Format("DELETE FROM [Zamowienia_ksiazki] WHERE isbn={0} AND id_zamowienie={1}",o,id);
+                    SqlCommand sqlcmdtc = new SqlCommand(sqlcmdt, conn);
+                    sqlcmdtc.ExecuteNonQuery();
+                }
+            }
 
+            initData();
         }
     }
 }
